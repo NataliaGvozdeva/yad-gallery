@@ -10,7 +10,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [YANDEX_CLIENT_ID:"2b2675e7f1a84977b8f2a0510434694a"]
+        manifestPlaceholders = [YANDEX_CLIENT_ID: "2b2675e7f1a84977b8f2a0510434694a"]
     }
     buildTypes {
         release {
