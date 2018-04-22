@@ -2,7 +2,6 @@ package com.mersiyanov.dmitry.yadg.network;
 
 import com.mersiyanov.dmitry.yadg.ResponseFileList;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -13,7 +12,7 @@ public interface YaDiskApi {
             "Accept: application/json",
             "Content-Type: application/json",
     })
-    @GET("files")
-    Single<ResponseFileList> getPlainFileList();
+    @GET("files?media_type=image")
+    Single<ResponseFileList> getImagesList();
 
 }
