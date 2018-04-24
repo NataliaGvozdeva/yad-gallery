@@ -2,7 +2,7 @@ package com.mersiyanov.dmitry.yadg;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
                         rv_pics = findViewById(R.id.rv_images);
                         picturesAdapter = new PicturesAdapter(itemList, onPictureClickListener);
-                        rv_pics.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        rv_pics.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
                         rv_pics.setAdapter(picturesAdapter);
 
 
@@ -58,19 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
-
-
-
     }
 
     private final PicturesAdapter.OnPictureClickListener onPictureClickListener = new PicturesAdapter.OnPictureClickListener() {
         @Override
         public void onPictureClick(ResponseFileList.Item image) {
             Toast.makeText(MainActivity.this, image.getPath(), Toast.LENGTH_LONG).show();
+
         }
     };
 }

@@ -34,7 +34,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ResponseFileList.Item image = itemList.get(position);
 
-        Picasso.get().load(image.getFile()).into(holder.imageView);
+        Picasso.get().load(image.getFile()).resize(550, 550).centerCrop().into(holder.imageView);
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
