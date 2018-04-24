@@ -1,6 +1,7 @@
 package com.mersiyanov.dmitry.yadg;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
     List<ResponseFileList.Item> itemList;
     RecyclerView rv_pics;
     PicturesAdapter picturesAdapter;
+    BlankFragment blankFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         RetroHelper.getApi().getImagesList().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -64,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPictureClick(ResponseFileList.Item image) {
             Toast.makeText(MainActivity.this, image.getPath(), Toast.LENGTH_LONG).show();
+
+            blankFragment = BlankFragment.newInstance(image.getPath());
+
+
+            FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+            trans.add(R.id.fragment_container, blankFragment);
+            trans.addToBackStack(null);
+            trans.commit();
 
         }
     };
