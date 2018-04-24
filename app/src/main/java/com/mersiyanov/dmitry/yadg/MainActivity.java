@@ -1,7 +1,7 @@
 package com.mersiyanov.dmitry.yadg;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(ResponseFileList responseFileList) {
                         itemList = responseFileList.getItems();
-                        System.out.println(itemList.get(1).getPath());
-
-                        Toast.makeText(MainActivity.this, itemList.get(1).getPath(), Toast.LENGTH_LONG).show();
 
                         rv_pics = findViewById(R.id.rv_images);
                         picturesAdapter = new PicturesAdapter(itemList, onPictureClickListener);
@@ -68,14 +65,21 @@ public class MainActivity extends AppCompatActivity {
         public void onPictureClick(ResponseFileList.Item image) {
             Toast.makeText(MainActivity.this, image.getPath(), Toast.LENGTH_LONG).show();
 
-            blankFragment = BlankFragment.newInstance(image.getPath());
+            Intent intent = new Intent(MainActivity.this, FullPictureActivity.class);
+            intent.putExtra("pic_url", image.getFile());
+            startActivity(intent);
 
 
-            FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-            trans.add(R.id.fragment_container, blankFragment);
-            trans.addToBackStack(null);
-            trans.commit();
+
+//            blankFragment = BlankFragment.newInstance(image.getPath());
+//
+//
+//            FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+//            trans.add(R.id.fragment_container, blankFragment);
+//            trans.addToBackStack(null);
+//            trans.commit();
 
         }
     };
+
 }

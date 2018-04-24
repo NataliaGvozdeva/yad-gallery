@@ -2,11 +2,14 @@ package com.mersiyanov.dmitry.yadg;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -34,7 +37,28 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ResponseFileList.Item image = itemList.get(position);
 
-        Picasso.get().load(image.getFile()).resize(550, 550).centerCrop().into(holder.imageView);
+        Picasso.get().load(image.getFile()).resize(550, 550).centerCrop().networkPolicy(NetworkPolicy.OFFLINE).into(holder.imageView, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(image.getFile()).resize(550, 550).centerCrop().into(holder.imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Log.v("Picasso","Could not fetch image");
+
+                            }
+                        });
+            }
+        });
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,8 +21,6 @@ public class AuthActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_YAD_LOGIN = 10;
     private YandexAuthSdk sdk;
-    private YandexAuthToken yandexAuthToken;
-
 
 
     @Override
@@ -30,25 +28,34 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        authBtn = findViewById(R.id.button_auth);
-        authBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Set<String>  scope = new HashSet<>();
-                sdk = new YandexAuthSdk(new YandexAuthOptions(AuthActivity.this, true));
-                startActivityForResult(sdk.createLoginIntent(AuthActivity.this, scope), REQUEST_CODE_YAD_LOGIN);
-            }
-        });
+        if (!((YadApplication) getApplication()).isLoggedIn()){
+            authBtn = findViewById(R.id.button_auth);
+            authBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Set<String>  scope = new HashSet<>();
+                    sdk = new YandexAuthSdk(new YandexAuthOptions(AuthActivity.this, true));
+                    startActivityForResult(sdk.createLoginIntent(AuthActivity.this, scope), REQUEST_CODE_YAD_LOGIN);
+                }
+            });
+        } else {
+            Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_YAD_LOGIN) {
             try {
-                yandexAuthToken = sdk.extractToken(resultCode, data);
+                YandexAuthToken yandexAuthToken = sdk.extractToken(resultCode, data);
                 if (yandexAuthToken != null) {
 //                    Toast.makeText(this, "Токен получен " + yandexAuthToken.getValue(), Toast.LENGTH_LONG).show();
 //                    Log.d("token", yandexAuthToken.getValue());
+
+                    ((YadApplication) getApplication()).setAuthToken(yandexAuthToken.getValue());
 
                     Intent intent = new Intent(AuthActivity.this, MainActivity.class);
                     startActivity(intent);
