@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     List<ResponseFileList.Item> itemList;
     RecyclerView rv_pics;
     PicturesAdapter picturesAdapter;
-    BlankFragment blankFragment;
+    FullPicFragment fullPicFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//            blankFragment = BlankFragment.newInstance(image.getPath());
+//            fullPicFragment = FullPicFragment.newInstance(image.getPath());
 //
 //
 //            FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-//            trans.add(R.id.fragment_container, blankFragment);
+//            trans.add(R.id.fragment_container, fullPicFragment);
 //            trans.addToBackStack(null);
 //            trans.commit();
 
