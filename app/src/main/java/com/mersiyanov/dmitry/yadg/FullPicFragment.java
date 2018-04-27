@@ -8,25 +8,45 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class FullPicFragment extends Fragment {
 
     private ViewPager mViewPager;
+    ImageView imageView;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_blank, container, false);
+
+
+
+        return v;
+    }
+
+    public static FullPicFragment newInstance(String pictureUrl) {
+
+        FullPicFragment f = new FullPicFragment();
+        Bundle b = new Bundle();
+        b.putString("pictureUrl", pictureUrl);
+
+        f.setArguments(b);
+
+        return f;
     }
 
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        mViewPager = view.findViewById(R.id.viewpager);
         mViewPager.setAdapter(new SamplePagerAdapter());
+
+
 
     }
 
@@ -37,6 +57,7 @@ public class FullPicFragment extends Fragment {
          */
         @Override
         public int getCount() {
+
             return 10;
         }
 
@@ -61,19 +82,21 @@ public class FullPicFragment extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             // Inflate a new layout from our resources
-            View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item,
-                    container, false);
+            View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item, container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
 
             // Retrieve a TextView from the inflated View, and update it's text
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText(String.valueOf(position + 1));
+
+            imageView = view.findViewById(R.id.full_pic);
+            Picasso.get().load(getArguments().getString("pictureUrl")).into(imageView);
 
 
             // Return the View
             return view;
         }
+
+
 
         /**
          * Destroy the item from the {@link ViewPager}. In our case this is simply removing the

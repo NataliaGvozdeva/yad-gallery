@@ -1,27 +1,28 @@
 package com.mersiyanov.dmitry.yadg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
 
 public class FullPictureActivity extends AppCompatActivity {
 
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_picture);
 
+        Intent intent = getIntent();
+        String imageUrl = intent.getStringExtra("pic_url");
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        FullPicFragment fragment = new FullPicFragment();
+        FullPicFragment fragment = FullPicFragment.newInstance(imageUrl);
         transaction.replace(R.id.sample_content_fragment, fragment);
         transaction.commit();
 
-//        Intent intent = getIntent();
-//        String imageUrl = intent.getStringExtra("pic_url");
-//
+
+
 //        imageView = findViewById(R.id.full_pic);
 //
 //        Picasso.get().load(imageUrl).into(imageView);
