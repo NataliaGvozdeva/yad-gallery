@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<ResponseFileList.Item> itemList;
+    static public List<ResponseFileList.Item> itemList;
     RecyclerView rv_pics;
     PicturesAdapter picturesAdapter;
     FullPicFragment fullPicFragment;

@@ -58,7 +58,7 @@ public class FullPicFragment extends Fragment {
         @Override
         public int getCount() {
 
-            return 10;
+            return MainActivity.itemList.size();
         }
 
         /**
@@ -90,6 +90,7 @@ public class FullPicFragment extends Fragment {
 
             imageView = view.findViewById(R.id.full_pic);
             Picasso.get().load(getArguments().getString("pictureUrl")).into(imageView);
+            Picasso.get().load(MainActivity.itemList.get(position).getFile()).into(imageView);
 
 
             // Return the View
