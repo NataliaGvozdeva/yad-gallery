@@ -1,5 +1,6 @@
 package com.mersiyanov.dmitry.yadg;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import java.util.List;
 public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
 
 
+    private Context context;
     private List<ResponseFileList.Item> itemList;
     private OnPictureClickListener onPictureClickListener;
 
@@ -30,12 +32,19 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ViewHolder viewHolder = new ViewHolder(layoutInflater.inflate(R.layout.picture_item_view, parent, false));
+        context =  parent.getContext();
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ResponseFileList.Item image = itemList.get(position);
+
+//        Glide.with(context).load(image.getFile())
+//                .apply(new RequestOptions()
+//                        .override(550, 550)
+//                        .centerCrop())
+//                .into(holder.imageView);
 
         Picasso.get().load(image.getFile()).resize(550, 550).centerCrop().networkPolicy(NetworkPolicy.OFFLINE).into(holder.imageView, new Callback() {
             @Override

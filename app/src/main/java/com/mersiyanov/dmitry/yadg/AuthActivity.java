@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
 import com.yandex.authsdk.YandexAuthException;
 import com.yandex.authsdk.YandexAuthOptions;
 import com.yandex.authsdk.YandexAuthSdk;

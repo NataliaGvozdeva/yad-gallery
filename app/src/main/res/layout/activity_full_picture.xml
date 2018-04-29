@@ -1,31 +1,14 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:background="@android:color/black"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".FullPictureActivity">-->
-
-    <!--&lt;!&ndash;<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
-        <!--&lt;!&ndash;xmlns:app="http://schemas.android.com/apk/res-auto"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/toolbar_actionbar"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:titleTextColor="@android:color/white"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="?android:actionBarSize"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:background="@android:color/black"/>&ndash;&gt;-->
-
-
-
-    <!--<FrameLayout-->
-        <!--android:id="@+id/content_fragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0px" />-->
-
-<!--</android.support.constraint.ConstraintLayout>-->
-
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pager"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/black"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    tools:context=".FullPictureActivity">
+
+    <FrameLayout
+        android:id="@+id/content_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0px" />
+
+</android.support.constraint.ConstraintLayout>

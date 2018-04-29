@@ -1,10 +1,14 @@
 package com.mersiyanov.dmitry.yadg;
 
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseFileList {
+import java.util.List;
+
+public class ResponseFileList implements Parcelable {
 
     @SerializedName("items")
     @Expose
@@ -15,6 +19,31 @@ public class ResponseFileList {
     @SerializedName("offset")
     @Expose
     private Integer offset;
+
+    protected ResponseFileList(Parcel in) {
+        if (in.readByte() == 0) {
+            limit = null;
+        } else {
+            limit = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            offset = null;
+        } else {
+            offset = in.readInt();
+        }
+    }
+
+    public static final Creator<ResponseFileList> CREATOR = new Creator<ResponseFileList>() {
+        @Override
+        public ResponseFileList createFromParcel(Parcel in) {
+            return new ResponseFileList(in);
+        }
+
+        @Override
+        public ResponseFileList[] newArray(int size) {
+            return new ResponseFileList[size];
+        }
+    };
 
     public List<Item> getItems() {
         return items;
@@ -40,7 +69,28 @@ public class ResponseFileList {
         this.offset = offset;
     }
 
-    class Item {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (limit == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(limit);
+        }
+        if (offset == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(offset);
+        }
+    }
+
+     public static class Item implements Parcelable {
 
         @SerializedName("antivirus_status")
         @Expose
@@ -99,6 +149,46 @@ public class ResponseFileList {
         @SerializedName("public_url")
         @Expose
         private String publicUrl;
+
+        protected Item(Parcel in) {
+            antivirusStatus = in.readString();
+            file = in.readString();
+            sha256 = in.readString();
+            name = in.readString();
+            created = in.readString();
+            if (in.readByte() == 0) {
+                revision = null;
+            } else {
+                revision = in.readLong();
+            }
+            resourceId = in.readString();
+            modified = in.readString();
+            preview = in.readString();
+            mediaType = in.readString();
+            path = in.readString();
+            md5 = in.readString();
+            type = in.readString();
+            mimeType = in.readString();
+            if (in.readByte() == 0) {
+                size = null;
+            } else {
+                size = in.readInt();
+            }
+            publicKey = in.readString();
+            publicUrl = in.readString();
+        }
+
+        public static final Creator<Item> CREATOR = new Creator<Item>() {
+            @Override
+            public Item createFromParcel(Parcel in) {
+                return new Item(in);
+            }
+
+            @Override
+            public Item[] newArray(int size) {
+                return new Item[size];
+            }
+        };
 
         public String getAntivirusStatus() {
             return antivirusStatus;
@@ -250,6 +340,42 @@ public class ResponseFileList {
 
         public void setPublicUrl(String publicUrl) {
             this.publicUrl = publicUrl;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(antivirusStatus);
+            dest.writeString(file);
+            dest.writeString(sha256);
+            dest.writeString(name);
+            dest.writeString(created);
+            if (revision == null) {
+                dest.writeByte((byte) 0);
+            } else {
+                dest.writeByte((byte) 1);
+                dest.writeLong(revision);
+            }
+            dest.writeString(resourceId);
+            dest.writeString(modified);
+            dest.writeString(preview);
+            dest.writeString(mediaType);
+            dest.writeString(path);
+            dest.writeString(md5);
+            dest.writeString(type);
+            dest.writeString(mimeType);
+            if (size == null) {
+                dest.writeByte((byte) 0);
+            } else {
+                dest.writeByte((byte) 1);
+                dest.writeInt(size);
+            }
+            dest.writeString(publicKey);
+            dest.writeString(publicUrl);
         }
 
         class Exif {
