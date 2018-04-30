@@ -2,17 +2,21 @@ package com.mersiyanov.dmitry.yadg.mvp;
 
 import android.util.Log;
 
-import com.mersiyanov.dmitry.yadg.ResponseFileList;
-import com.mersiyanov.dmitry.yadg.network.RetroHelper;
+import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter implements PicturesContract.Presenter {
 
     private PicturesContract.View view;
+
+    public MainPresenter(PicturesContract.Repo repo) {
+        this.repo = repo;
+    }
+
+    private PicturesContract.Repo repo;
+//    static public List<ResponseFileList.Item> itemList;
 
     @Override
     public void attachView(PicturesContract.View view) {
@@ -27,8 +31,10 @@ public class MainPresenter implements PicturesContract.Presenter {
 
     @Override
     public void load() {
-        RetroHelper.getApi().getImagesList().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+
+        view.showLoading();
+
+        repo.load()
                 .subscribe(new SingleObserver<ResponseFileList>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -39,12 +45,8 @@ public class MainPresenter implements PicturesContract.Presenter {
                     public void onSuccess(ResponseFileList responseFileList) {
 //                        itemList = responseFileList.getItems();
 
-                        view.showLoading();
+//                        view.showData(itemList);
                         view.showData(responseFileList.getItems());
-
-
-
-
 
                     }
 

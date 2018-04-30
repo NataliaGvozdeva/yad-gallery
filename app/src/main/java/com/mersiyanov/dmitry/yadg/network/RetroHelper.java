@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetroHelper {
 
 
-    private static Retrofit getRetrofit(){
+    private  Retrofit getRetrofit(){
         final OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .build();
@@ -23,7 +23,7 @@ public class RetroHelper {
 
     }
 
-    public static YaDiskApi getApi() {
+    public YaDiskApi getApi() {
         return getRetrofit().create(YaDiskApi.class);
     }
 }

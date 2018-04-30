@@ -3,6 +3,8 @@ package com.mersiyanov.dmitry.yadg;
 import android.app.Application;
 import android.text.TextUtils;
 
+import com.mersiyanov.dmitry.yadg.di.AppComponent;
+import com.mersiyanov.dmitry.yadg.di.DaggerAppComponent;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -10,10 +12,12 @@ public class YadApplication extends Application {
 
     private static final String PREFERENCES_SESSION = "session";
     private static final String KEY_AUTH_TOKEN = "auth-token";
+    public static AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        component = DaggerAppComponent.create();
 
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttp3Downloader(this,Integer.MAX_VALUE));

@@ -1,6 +1,6 @@
 package com.mersiyanov.dmitry.yadg.network;
 
-import com.mersiyanov.dmitry.yadg.ResponseFileList;
+import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

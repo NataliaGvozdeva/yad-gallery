@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg;
+package com.mersiyanov.dmitry.yadg.pojo;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -7,6 +7,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+
 public class FullPictureActivity extends AppCompatActivity {
 
     private static final int NUM_PAGES = 5;

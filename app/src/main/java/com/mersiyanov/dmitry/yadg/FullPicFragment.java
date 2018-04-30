@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
+import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 import com.squareup.picasso.Picasso;
 
 import java.util.Formatter;

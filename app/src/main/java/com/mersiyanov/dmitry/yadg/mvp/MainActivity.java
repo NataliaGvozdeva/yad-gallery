@@ -12,13 +12,16 @@ import android.widget.Toast;
 import com.mersiyanov.dmitry.yadg.FullPictureActivity;
 import com.mersiyanov.dmitry.yadg.PicturesAdapter;
 import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.ResponseFileList;
+import com.mersiyanov.dmitry.yadg.YadApplication;
+import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements PicturesContract.View {
 
-    PicturesContract.Presenter presenter;
+    @Inject PicturesContract.Presenter presenter;
 
     static public List<ResponseFileList.Item> itemList;
     private RecyclerView rv_pics;
@@ -29,12 +32,11 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        presenter = new MainPresenter();
-        presenter.attachView(this);
-        rv_pics = findViewById(R.id.rv_images);
-        progressBar = findViewById(R.id.image_load_prog);
+        YadApplication.component.injects(this);
 
+        setContentView(R.layout.activity_main);
+        presenter.attachView(this);
+        initUI();
         presenter.load();
 
 
@@ -42,26 +44,31 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
 
     @Override
     public void showLoading() {
-        rv_pics.setAdapter(picturesAdapter);
-        rv_pics.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
+        rv_pics.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showError() {
         Toast.makeText(MainActivity.this, R.string.load_error, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void showData(List<ResponseFileList.Item> localItemlist) {
+        rv_pics.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+
         itemList = localItemlist;
         picturesAdapter = new PicturesAdapter(localItemlist, onPictureClickListener);
-        rv_pics.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
         rv_pics.setAdapter(picturesAdapter);
+
     }
 
     public void initUI() {
+
+        rv_pics = findViewById(R.id.rv_images);
+        progressBar = findViewById(R.id.image_load_prog);
+        rv_pics.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
 
     }
 
