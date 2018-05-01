@@ -1,5 +1,4 @@
-package com.mersiyanov.dmitry.yadg;
-
+package com.mersiyanov.dmitry.yadg.ui;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -13,12 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.mersiyanov.dmitry.yadg.R;
 import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
-import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 import com.squareup.picasso.Picasso;
 
 import java.util.Formatter;
-
 
 public class FullPicFragment extends Fragment {
 
@@ -26,52 +24,43 @@ public class FullPicFragment extends Fragment {
     private Toolbar mActionBarToolbar;
     private ViewPager mViewPager;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_full_pic, container, false);
     }
 
-    public static FullPicFragment newInstance(String pictureUrl, ResponseFileList.Item item, int position) {
-
-        FullPicFragment f = new FullPicFragment();
-
+    public static FullPicFragment newInstance(int position) {
+        FullPicFragment fragment = new FullPicFragment();
         Bundle b = new Bundle();
-        b.putString("pictureUrl", pictureUrl);
         b.putInt("position", position);
-        b.putParcelable("item", item);
-
-        f.setArguments(b);
-
-        return f;
+        fragment.setArguments(b);
+        return fragment;
     }
-
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         mViewPager = view.findViewById(R.id.viewpager);
         mViewPager.setAdapter(new SamplePagerAdapter());
         mViewPager.setCurrentItem(getArguments().getInt("position"));
-
     }
 
     class SamplePagerAdapter extends PagerAdapter {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            // Inflate a new layout from our resources
             View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item, container, false);
 
-
             imageView = view.findViewById(R.id.full_pic);
-            ResponseFileList.Item item = getArguments().getParcelable("item");
-
+            mActionBarToolbar = view.findViewById(R.id.toolbar);
 
             Picasso.get().load(MainActivity.itemList.get(position).getFile()).into(imageView);
+            initActionBar(position);
 
-            mActionBarToolbar = view.findViewById(R.id.toolbar);
+            container.addView(view);
+            return view;
+        }
+
+        private void initActionBar(int position) {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
             activity.setSupportActionBar(mActionBarToolbar);
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -82,12 +71,7 @@ public class FullPicFragment extends Fragment {
             activity.getSupportActionBar().setTitle(f.toString());
             mActionBarToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-            container.addView(view);
-            return view;
         }
-
-
-
 
         @Override
         public int getCount() {
@@ -98,7 +82,6 @@ public class FullPicFragment extends Fragment {
         public boolean isViewFromObject(View view, Object o) {
             return o == view;
         }
-
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

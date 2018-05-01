@@ -8,8 +8,7 @@ import io.reactivex.Single;
 
 public class PicturesContract {
 
-
-    interface View {
+    public interface View {
 
         void showLoading();
 

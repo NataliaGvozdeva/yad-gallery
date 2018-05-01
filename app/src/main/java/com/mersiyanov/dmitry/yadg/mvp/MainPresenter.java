@@ -10,19 +10,14 @@ import io.reactivex.disposables.Disposable;
 public class MainPresenter implements PicturesContract.Presenter {
 
     private PicturesContract.View view;
+    private PicturesContract.Repo repo;
 
     public MainPresenter(PicturesContract.Repo repo) {
         this.repo = repo;
     }
 
-    private PicturesContract.Repo repo;
-//    static public List<ResponseFileList.Item> itemList;
-
     @Override
-    public void attachView(PicturesContract.View view) {
-        this.view = view;
-
-    }
+    public void attachView(PicturesContract.View view) { this.view = view; }
 
     @Override
     public void detachView() {
@@ -33,9 +28,7 @@ public class MainPresenter implements PicturesContract.Presenter {
     public void load() {
 
         view.showLoading();
-
-        repo.load()
-                .subscribe(new SingleObserver<ResponseFileList>() {
+        repo.load().subscribe(new SingleObserver<ResponseFileList>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
@@ -43,20 +36,14 @@ public class MainPresenter implements PicturesContract.Presenter {
 
                     @Override
                     public void onSuccess(ResponseFileList responseFileList) {
-//                        itemList = responseFileList.getItems();
-
-//                        view.showData(itemList);
                         view.showData(responseFileList.getItems());
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e("onError", e.getLocalizedMessage());
                         view.showError();
-
                     }
                 });
-
     }
 }

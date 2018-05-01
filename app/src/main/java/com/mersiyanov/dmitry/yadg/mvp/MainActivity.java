@@ -2,18 +2,23 @@ package com.mersiyanov.dmitry.yadg.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.mersiyanov.dmitry.yadg.FullPictureActivity;
-import com.mersiyanov.dmitry.yadg.PicturesAdapter;
 import com.mersiyanov.dmitry.yadg.R;
 import com.mersiyanov.dmitry.yadg.YadApplication;
+import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+import com.mersiyanov.dmitry.yadg.ui.AuthActivity;
+import com.mersiyanov.dmitry.yadg.ui.FullPictureActivity;
+import com.mersiyanov.dmitry.yadg.ui.PicturesAdapter;
 
 import java.util.List;
 
@@ -22,7 +27,6 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements PicturesContract.View {
 
     @Inject PicturesContract.Presenter presenter;
-
     static public List<ResponseFileList.Item> itemList;
     private RecyclerView rv_pics;
     private PicturesAdapter picturesAdapter;
@@ -30,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         YadApplication.component.injects(this);
 
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
         presenter.attachView(this);
         initUI();
         presenter.load();
-
 
     }
 
@@ -65,36 +67,59 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
     }
 
     public void initUI() {
-
         rv_pics = findViewById(R.id.rv_images);
         progressBar = findViewById(R.id.image_load_prog);
         rv_pics.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
-
     }
-
 
     private final PicturesAdapter.OnPictureClickListener onPictureClickListener = new PicturesAdapter.OnPictureClickListener() {
         @Override
         public void onPictureClick(ResponseFileList.Item image) {
-            Toast.makeText(MainActivity.this, image.getPath(), Toast.LENGTH_LONG).show();
             int itemIndex = itemList.indexOf(image);
-            if(itemIndex == 0) {
-                itemIndex = itemIndex + 1;
-            }
+            if(itemIndex == 0) { itemIndex = itemIndex + 1; }
 
             Intent intent = new Intent(MainActivity.this, FullPictureActivity.class);
-            intent.putExtra("pic_url", image.getFile());
             intent.putExtra("pic_position", itemIndex);
-            intent.putExtra("image", image);
             startActivity(intent);
-
 
         }
     };
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+        if (itemId == R.id.action_about) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.action_about)
+                    .setMessage(R.string.about_text)
+                    .setIcon(R.mipmap.gallery_icon)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .show();
+            return true;
+        } else if (itemId == R.id.action_logout){
+            NetworkUtils.deleteAuthToken();
+            Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+            startActivity(intent);
+            return  true;
+        } else return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onDestroy() {
         presenter.detachView();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
