@@ -17,7 +17,6 @@ public class MainRepo implements PicturesContract.Repo {
         this.retroHelper = retroHelper;
     }
 
-
     @Override
     public Single<ResponseFileList> load() {
 
@@ -27,7 +26,6 @@ public class MainRepo implements PicturesContract.Repo {
                     .observeOn(AndroidSchedulers.mainThread())
                     .cache();
         }
-
         return cache;
     }
 }

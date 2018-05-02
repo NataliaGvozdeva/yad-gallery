@@ -104,9 +104,6 @@ public class ResponseFileList implements Parcelable {
         @SerializedName("name")
         @Expose
         private String name;
-        @SerializedName("exif")
-        @Expose
-        private Exif exif;
         @SerializedName("created")
         @Expose
         private String created;
@@ -119,9 +116,6 @@ public class ResponseFileList implements Parcelable {
         @SerializedName("modified")
         @Expose
         private String modified;
-        @SerializedName("comment_ids")
-        @Expose
-        private CommentIds commentIds;
         @SerializedName("preview")
         @Expose
         private String preview;
@@ -222,14 +216,6 @@ public class ResponseFileList implements Parcelable {
             this.name = name;
         }
 
-        public Exif getExif() {
-            return exif;
-        }
-
-        public void setExif(Exif exif) {
-            this.exif = exif;
-        }
-
         public String getCreated() {
             return created;
         }
@@ -260,14 +246,6 @@ public class ResponseFileList implements Parcelable {
 
         public void setModified(String modified) {
             this.modified = modified;
-        }
-
-        public CommentIds getCommentIds() {
-            return commentIds;
-        }
-
-        public void setCommentIds(CommentIds commentIds) {
-            this.commentIds = commentIds;
         }
 
         public String getPreview() {
@@ -377,38 +355,5 @@ public class ResponseFileList implements Parcelable {
             dest.writeString(publicKey);
             dest.writeString(publicUrl);
         }
-
-        class Exif {
-
-
-        }
-
-         class CommentIds {
-
-            @SerializedName("private_resource")
-            @Expose
-            private String privateResource;
-            @SerializedName("public_resource")
-            @Expose
-            private String publicResource;
-
-            public String getPrivateResource() {
-                return privateResource;
-            }
-
-            public void setPrivateResource(String privateResource) {
-                this.privateResource = privateResource;
-            }
-
-            public String getPublicResource() {
-                return publicResource;
-            }
-
-            public void setPublicResource(String publicResource) {
-                this.publicResource = publicResource;
-            }
-
-        }
-
     }
 }
