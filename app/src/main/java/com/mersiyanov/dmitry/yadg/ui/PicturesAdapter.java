@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -18,10 +18,10 @@ import java.util.List;
 
 public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
 
-    private List<ResponseFileList.Item> itemList;
+    private List<Item> itemList;
     private OnPictureClickListener onPictureClickListener;
 
-    public PicturesAdapter(List<ResponseFileList.Item> itemList, OnPictureClickListener onPictureClickListener) {
+    public PicturesAdapter(List<Item> itemList, OnPictureClickListener onPictureClickListener) {
         this.itemList = itemList;
         this.onPictureClickListener = onPictureClickListener;
     }
@@ -36,7 +36,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ResponseFileList.Item image = itemList.get(position);
+       Item image = itemList.get(position);
 
         Picasso.get().load(image.getFile()).resize(550, 550).centerCrop()
                 .networkPolicy(NetworkPolicy.OFFLINE)
@@ -90,6 +90,6 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
     }
 
     public interface OnPictureClickListener {
-        void onPictureClick(ResponseFileList.Item image);
+        void onPictureClick(Item image);
     }
 }

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.mersiyanov.dmitry.yadg.R;
 import com.mersiyanov.dmitry.yadg.YadApplication;
 import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
-import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.ui.AuthActivity;
 import com.mersiyanov.dmitry.yadg.ui.FullPictureActivity;
 import com.mersiyanov.dmitry.yadg.ui.PicturesAdapter;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements PicturesContract.View {
 
     @Inject PicturesContract.Presenter presenter;
-    static public List<ResponseFileList.Item> itemList;
+    static public List<Item> itemList;
     private RecyclerView rv_pics;
     private PicturesAdapter picturesAdapter;
     private ProgressBar progressBar;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
     }
 
     @Override
-    public void showData(List<ResponseFileList.Item> localItemlist) {
+    public void showData(List<Item> localItemlist) {
         rv_pics.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
 
     private final PicturesAdapter.OnPictureClickListener onPictureClickListener = new PicturesAdapter.OnPictureClickListener() {
         @Override
-        public void onPictureClick(ResponseFileList.Item image) {
+        public void onPictureClick(Item image) {
             int itemIndex = itemList.indexOf(image);
             if(itemIndex == 0) { itemIndex = itemIndex + 1; }
 

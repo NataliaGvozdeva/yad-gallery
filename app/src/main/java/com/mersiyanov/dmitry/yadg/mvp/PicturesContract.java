@@ -1,5 +1,6 @@
 package com.mersiyanov.dmitry.yadg.mvp;
 
+import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class PicturesContract {
 
         void showError();
 
-        void showData(List<ResponseFileList.Item> itemlist);
+        void showData(List<Item> itemlist);
     }
 
     public interface Presenter {
@@ -29,5 +30,7 @@ public class PicturesContract {
     public interface Repo {
 
         Single<ResponseFileList> load();
+
+        void closeDB();
     }
 }

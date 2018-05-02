@@ -13,13 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
+import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.squareup.picasso.Picasso;
 
 import java.util.Formatter;
 
+import io.realm.RealmList;
+
 public class FullPicFragment extends Fragment {
 
+    private static RealmList<Item> itemRealmList;
     private ImageView imageView;
     private Toolbar mActionBarToolbar;
     private ViewPager mViewPager;
@@ -29,8 +32,9 @@ public class FullPicFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_full_pic, container, false);
     }
 
-    public static FullPicFragment newInstance(int position) {
+    public static FullPicFragment newInstance(int position, RealmList<Item> itemList) {
         FullPicFragment fragment = new FullPicFragment();
+        itemRealmList = itemList;
         Bundle b = new Bundle();
         b.putInt("position", position);
         fragment.setArguments(b);
@@ -53,7 +57,7 @@ public class FullPicFragment extends Fragment {
             imageView = view.findViewById(R.id.full_pic);
             mActionBarToolbar = view.findViewById(R.id.toolbar);
 
-            Picasso.get().load(MainActivity.itemList.get(position).getFile()).into(imageView);
+            Picasso.get().load(itemRealmList.get(position).getFile()).into(imageView);
             initActionBar(position);
 
             container.addView(view);
@@ -66,7 +70,7 @@ public class FullPicFragment extends Fragment {
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             Formatter f = new Formatter();
-            f.format("%d из %d", position + 1,  MainActivity.itemList.size());
+            f.format("%d из %d", position + 1,  itemRealmList.size());
 
             activity.getSupportActionBar().setTitle(f.toString());
             mActionBarToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -75,7 +79,7 @@ public class FullPicFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return MainActivity.itemList.size();
+            return itemRealmList.size();
         }
 
         @Override

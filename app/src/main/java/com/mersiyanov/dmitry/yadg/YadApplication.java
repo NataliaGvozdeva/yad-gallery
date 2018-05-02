@@ -8,6 +8,8 @@ import com.mersiyanov.dmitry.yadg.di.DaggerAppComponent;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
+import io.realm.Realm;
+
 public class YadApplication extends Application {
 
     private static Context mContext;
@@ -20,6 +22,7 @@ public class YadApplication extends Application {
         super.onCreate();
         component = DaggerAppComponent.create();
         mContext = getApplicationContext();
+        Realm.init(this);
 
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttp3Downloader(this, Integer.MAX_VALUE));

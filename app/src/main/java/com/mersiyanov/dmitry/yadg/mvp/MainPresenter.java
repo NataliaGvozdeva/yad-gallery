@@ -22,6 +22,7 @@ public class MainPresenter implements PicturesContract.Presenter {
     @Override
     public void detachView() {
         view = null;
+        repo.closeDB();
     }
 
     @Override
