@@ -24,7 +24,7 @@ public class PicturesContract {
 
         void detachView();
 
-        void load(String token);
+        void getPictures(String token);
     }
 
     public interface Repo {

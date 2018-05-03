@@ -9,10 +9,10 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:visibility="visible"
         android:id="@+id/rv_images"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,13 +23,57 @@
 
     <ProgressBar
         android:id="@+id/image_load_prog"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:visibility="gone"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.295" />
+
+    <ImageView
+        android:id="@+id/no_internet_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="156dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/no_connection_icon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <TextView
+        android:id="@+id/no_internet_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/no_connection"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/no_internet_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/no_internet_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
+        android:layout_marginTop="53dp"
+        android:text="@string/try_again"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_load_prog"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
 

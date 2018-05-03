@@ -10,7 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module
+@Module()
 public class AppModule {
 
     @Provides
@@ -18,7 +18,6 @@ public class AppModule {
     RetroHelper provideApi() {
         return new RetroHelper();
     }
-
 
     @Singleton
     @Provides

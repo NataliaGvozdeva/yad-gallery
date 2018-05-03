@@ -10,7 +10,9 @@ import com.squareup.picasso.Picasso;
 
 import io.realm.Realm;
 
-public class YadApplication extends Application {
+//import com.mersiyanov.dmitry.yadg.di.DaggerAppComponent;
+
+public class YadApplication extends Application  {
 
     private static final String PREFERENCES_SESSION = "session";
     private static final String KEY_AUTH_TOKEN = "auth-token";

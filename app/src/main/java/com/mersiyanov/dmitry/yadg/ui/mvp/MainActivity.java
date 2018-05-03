@@ -1,5 +1,6 @@
 package com.mersiyanov.dmitry.yadg.ui.mvp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -9,7 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mersiyanov.dmitry.yadg.R;
@@ -30,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
     private RecyclerView rv_pics;
     private PicturesAdapter picturesAdapter;
     private ProgressBar progressBar;
+    private ImageView noInternetImg;
+    private TextView noInternetTxt;
+    private Button noInternetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
         setContentView(R.layout.activity_main);
         presenter.attachView(this);
         initUI();
-        presenter.load(((YadApplication) getApplication()).getAuthToken());
+        presenter.getPictures(((YadApplication) getApplication()).getAuthToken());
 
     }
 
@@ -51,7 +58,27 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
 
     @Override
     public void showError() {
+        noInternetImg = findViewById(R.id.no_internet_img);
+        noInternetTxt = findViewById(R.id.no_internet_txt);
+        noInternetBtn = findViewById(R.id.no_internet_btn);
+
+        progressBar.setVisibility(View.GONE);
+        noInternetImg.setVisibility(View.VISIBLE);
+        noInternetTxt.setVisibility(View.VISIBLE);
+        noInternetBtn.setVisibility(View.VISIBLE);
+
         Toast.makeText(MainActivity.this, R.string.load_error, Toast.LENGTH_LONG).show();
+
+        noInternetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                noInternetImg.setVisibility(View.GONE);
+                noInternetTxt.setVisibility(View.GONE);
+                noInternetBtn.setVisibility(View.GONE);
+                presenter.getPictures(((YadApplication) getApplication()).getAuthToken());
+            }
+        });
     }
 
     @Override
@@ -115,6 +142,11 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
     protected void onDestroy() {
         presenter.detachView();
         super.onDestroy();
+    }
+
+    @Override
+    public Context getApplicationContext() {
+        return super.getApplicationContext();
     }
 
     @Override

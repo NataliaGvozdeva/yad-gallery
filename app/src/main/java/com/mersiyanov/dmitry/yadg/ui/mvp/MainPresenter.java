@@ -1,7 +1,9 @@
 package com.mersiyanov.dmitry.yadg.ui.mvp;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import io.reactivex.SingleObserver;
@@ -14,6 +16,7 @@ public class MainPresenter implements PicturesContract.Presenter {
 
     public MainPresenter(PicturesContract.Repo repo) {
         this.repo = repo;
+//        this.context = context;
     }
 
     @Override
@@ -29,25 +32,36 @@ public class MainPresenter implements PicturesContract.Presenter {
     }
 
     @Override
-    public void load(String token) {
+    public void getPictures(String token) {
+        Context context = ((MainActivity) view).getApplicationContext();
 
+        if(NetworkUtils.isNetworkAvailable(context)) {
+            load(token);
+
+        } else {
+            view.showError();
+        }
+    }
+
+    private void load(String token) {
         view.showLoading();
+
         repo.load(token).subscribe(new SingleObserver<ResponseFileList>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-                    }
+            }
 
-                    @Override
-                    public void onSuccess(ResponseFileList responseFileList) {
-                        view.showData(responseFileList.getItems());
-                    }
+            @Override
+            public void onSuccess(ResponseFileList responseFileList) {
+                view.showData(responseFileList.getItems());
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("onError", e.getLocalizedMessage());
-                        view.showError();
-                    }
-                });
+            @Override
+            public void onError(Throwable e) {
+                Log.e("onError", e.getLocalizedMessage());
+                view.showError();
+            }
+        });
     }
 }
