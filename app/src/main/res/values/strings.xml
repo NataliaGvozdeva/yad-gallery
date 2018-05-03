@@ -3,9 +3,6 @@
     <string name="load_error">Ошибка загрузки. Попробуйте позже</string>
     <string name="image_content">Изображение</string>
     <string name="auth_btn_title">Авторизация</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="auth_error">Авторизация не удалась</string>
     <string name="auth_in_progress">Авторизация...</string>
     <string name="action_about">О программе</string>
