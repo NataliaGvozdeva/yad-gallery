@@ -17,7 +17,10 @@ public class MainPresenter implements PicturesContract.Presenter {
     }
 
     @Override
-    public void attachView(PicturesContract.View view) { this.view = view; }
+    public void attachView(PicturesContract.View view) {
+        this.view = view;
+        repo.initDB();
+    }
 
     @Override
     public void detachView() {

@@ -31,6 +31,8 @@ public class PicturesContract {
 
         Single<ResponseFileList> load();
 
+        void initDB();
+
         void closeDB();
     }
 }

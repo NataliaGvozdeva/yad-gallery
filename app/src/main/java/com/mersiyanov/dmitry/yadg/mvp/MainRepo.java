@@ -2,12 +2,11 @@ package com.mersiyanov.dmitry.yadg.mvp;
 
 import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.network.RetroHelper;
+import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
 
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 
@@ -26,39 +25,30 @@ public class MainRepo implements PicturesContract.Repo {
     public Single<ResponseFileList> load() {
 
         if(cache == null) {
-
             cache = retroHelper.getApi().getImagesList(NetworkUtils.getAuthToken())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .cache();
-            saveToDb();
+                    .cache()
+                    .doOnSuccess(list -> saveToDb(list));
     }
         return cache;
     }
 
-    private void saveToDb() {
-        cache.subscribe(new SingleObserver<ResponseFileList>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onSuccess(ResponseFileList list) {
-                realm.beginTransaction();
-                realm.insert(list.getItems());
-                realm.commitTransaction();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-        });
+    private void saveToDb(ResponseFileList list){
+        if(realm.where(Item.class).findAll().size() == 0) {
+            realm.beginTransaction();
+            realm.insert(list.getItems());
+            realm.commitTransaction();
+        }
     }
 
     @Override
     public void closeDB() {
         realm.close();
+    }
+
+    @Override
+    public void initDB() {
+        realm = Realm.getDefaultInstance();
     }
 }
