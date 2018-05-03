@@ -1,6 +1,6 @@
 package com.mersiyanov.dmitry.yadg.di;
 
-import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
+import com.mersiyanov.dmitry.yadg.ui.mvp.MainActivity;
 
 import javax.inject.Singleton;
 

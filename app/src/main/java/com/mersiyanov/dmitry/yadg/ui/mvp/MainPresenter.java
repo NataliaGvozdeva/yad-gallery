@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.mvp;
+package com.mersiyanov.dmitry.yadg.ui.mvp;
 
 import android.util.Log;
 

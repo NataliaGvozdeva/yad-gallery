@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.mvp;
+package com.mersiyanov.dmitry.yadg.ui.mvp;
 
 import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.network.RetroHelper;

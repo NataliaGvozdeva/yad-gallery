@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".mvp.MainActivity">
+        <activity android:name=".ui.mvp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -30,7 +30,7 @@
         </activity>
         <activity android:name=".ui.FullPictureActivity"
             android:theme="@style/MyTheme"
-            android:parentActivityName=".mvp.MainActivity" >
+            android:parentActivityName=".ui.mvp.MainActivity" >
 
         </activity>
     </application>

@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.mvp;
+package com.mersiyanov.dmitry.yadg.ui.mvp;
 
 import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;

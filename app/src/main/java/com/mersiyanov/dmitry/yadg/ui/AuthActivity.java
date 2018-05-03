@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.mvp.MainActivity;
 import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
+import com.mersiyanov.dmitry.yadg.ui.mvp.MainActivity;
 import com.yandex.authsdk.YandexAuthException;
 import com.yandex.authsdk.YandexAuthOptions;
 import com.yandex.authsdk.YandexAuthSdk;
