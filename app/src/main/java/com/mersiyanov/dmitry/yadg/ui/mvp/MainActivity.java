@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
         noInternetTxt.setVisibility(View.VISIBLE);
         noInternetBtn.setVisibility(View.VISIBLE);
 
-        Toast.makeText(MainActivity.this, R.string.load_error, Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, R.string.load_error, Toast.LENGTH_SHORT).show();
 
         noInternetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
