@@ -1,6 +1,5 @@
 package com.mersiyanov.dmitry.yadg.ui.mvp;
 
-import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.network.RetroHelper;
 import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
@@ -22,10 +21,10 @@ public class MainRepo implements PicturesContract.Repo {
     }
 
     @Override
-    public Single<ResponseFileList> load() {
+    public Single<ResponseFileList> load(String token) {
 
         if(cache == null) {
-            cache = retroHelper.getApi().getImagesList(NetworkUtils.getAuthToken())
+            cache = retroHelper.getApi().getImagesList(token)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .cache()

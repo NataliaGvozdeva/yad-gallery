@@ -29,10 +29,10 @@ public class MainPresenter implements PicturesContract.Presenter {
     }
 
     @Override
-    public void load() {
+    public void load(String token) {
 
         view.showLoading();
-        repo.load().subscribe(new SingleObserver<ResponseFileList>() {
+        repo.load(token).subscribe(new SingleObserver<ResponseFileList>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 

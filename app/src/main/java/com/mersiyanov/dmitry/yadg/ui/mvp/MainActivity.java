@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.mersiyanov.dmitry.yadg.R;
 import com.mersiyanov.dmitry.yadg.YadApplication;
-import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
 import com.mersiyanov.dmitry.yadg.pojo.Item;
 import com.mersiyanov.dmitry.yadg.ui.AuthActivity;
 import com.mersiyanov.dmitry.yadg.ui.FullPictureActivity;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
         setContentView(R.layout.activity_main);
         presenter.attachView(this);
         initUI();
-        presenter.load();
+        presenter.load(((YadApplication) getApplication()).getAuthToken());
 
     }
 
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
                     .show();
             return true;
         } else if (itemId == R.id.action_logout){
-            NetworkUtils.deleteAuthToken();
+            ((YadApplication) getApplication()).deleteAuthToken();
             Intent intent = new Intent(MainActivity.this, AuthActivity.class);
             startActivity(intent);
             return  true;

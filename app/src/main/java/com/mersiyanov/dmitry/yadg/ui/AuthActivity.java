@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
+import com.mersiyanov.dmitry.yadg.YadApplication;
 import com.mersiyanov.dmitry.yadg.ui.mvp.MainActivity;
 import com.yandex.authsdk.YandexAuthException;
 import com.yandex.authsdk.YandexAuthOptions;
@@ -34,7 +34,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        if (NetworkUtils.isLoggedIn()){
+        if (((YadApplication) getApplication()).isLoggedIn()){
             startMainActivity();
 
         } else {
@@ -50,7 +50,7 @@ public class AuthActivity extends AppCompatActivity {
             noAuthLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    NetworkUtils.setAuthToken("AQAAAAAAyzDHAATzcz1kz5Y72UNGurKlusPcD5c");
+                    ((YadApplication) getApplication()).setAuthToken("AQAAAAAAyzDHAATzcz1kz5Y72UNGurKlusPcD5c");
                     startMainActivity();
                 }
             });
@@ -77,7 +77,7 @@ public class AuthActivity extends AppCompatActivity {
                 try {
                     YandexAuthToken yandexAuthToken = sdk.extractToken(resultCode, data);
                     if (yandexAuthToken != null) {
-                        NetworkUtils.setAuthToken(yandexAuthToken.getValue());
+                        ((YadApplication) getApplication()).setAuthToken(yandexAuthToken.getValue());
                         Log.e("TOKEN", yandexAuthToken.getValue());
                         startMainActivity();
                     }

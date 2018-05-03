@@ -24,12 +24,12 @@ public class PicturesContract {
 
         void detachView();
 
-        void load();
+        void load(String token);
     }
 
     public interface Repo {
 
-        Single<ResponseFileList> load();
+        Single<ResponseFileList> load(String token);
 
         void initDB();
 

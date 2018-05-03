@@ -82,7 +82,6 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imageView;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.item_image);
