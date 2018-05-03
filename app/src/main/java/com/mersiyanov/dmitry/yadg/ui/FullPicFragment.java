@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mersiyanov.dmitry.yadg.R;
+import com.mersiyanov.dmitry.yadg.YadApplication;
 import com.mersiyanov.dmitry.yadg.pojo.Item;
+import com.squareup.leakcanary.RefWatcher;
 import com.squareup.picasso.Picasso;
 
 import java.util.Formatter;
@@ -92,6 +94,13 @@ public class FullPicFragment extends Fragment {
             container.removeView((View) object);
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher refWatcher = YadApplication.getRefWatcher(getActivity());
+        refWatcher.watch(this);
     }
 }
 
