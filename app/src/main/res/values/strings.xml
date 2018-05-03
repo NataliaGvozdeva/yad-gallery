@@ -11,4 +11,5 @@
     <string name="action_about">О программе</string>
     <string name="action_logout">Выйти</string>
     <string name="about_text">Школа мобильной разработки 2018\nАвтор - Мерсиянов Дмитрий\nE-mail - dmersiyanov@yandex.ru</string>
+    <string name="no_token_auth">Вход без авторизации</string>
 </resources>

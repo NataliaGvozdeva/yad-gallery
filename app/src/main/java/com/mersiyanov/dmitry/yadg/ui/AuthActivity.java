@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mersiyanov.dmitry.yadg.R;
@@ -22,6 +23,7 @@ import java.util.Set;
 
 public class AuthActivity extends AppCompatActivity {
 
+    private TextView noAuthLogin;
     private Button authBtn;
     private static final int REQUEST_CODE_YAD_LOGIN = 10;
     private YandexAuthSdk sdk;
@@ -41,6 +43,15 @@ public class AuthActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     login();
+                }
+            });
+
+            noAuthLogin = findViewById(R.id.no_auth_login);
+            noAuthLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NetworkUtils.setAuthToken("AQAAAAAAyzDHAATzcz1kz5Y72UNGurKlusPcD5c");
+                    startMainActivity();
                 }
             });
         }
@@ -67,6 +78,7 @@ public class AuthActivity extends AppCompatActivity {
                     YandexAuthToken yandexAuthToken = sdk.extractToken(resultCode, data);
                     if (yandexAuthToken != null) {
                         NetworkUtils.setAuthToken(yandexAuthToken.getValue());
+                        Log.e("TOKEN", yandexAuthToken.getValue());
                         startMainActivity();
                     }
                 } catch (YandexAuthException e) {
