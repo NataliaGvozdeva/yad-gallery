@@ -17,7 +17,7 @@ import io.realm.RealmList;
 
 public class FullPicFragment extends Fragment {
 
-    private static RealmList<Item> itemRealmList;
+    private RealmList<Item> itemRealmList;
     private ImageView imageView;
 
     @Override
@@ -31,7 +31,7 @@ public class FullPicFragment extends Fragment {
 
     public static FullPicFragment newInstance(int position, RealmList<Item> itemList) {
         FullPicFragment fragment = new FullPicFragment();
-        itemRealmList = itemList;
+        fragment.itemRealmList = itemList;
         Bundle b = new Bundle();
         b.putInt("position", position);
         fragment.setArguments(b);
