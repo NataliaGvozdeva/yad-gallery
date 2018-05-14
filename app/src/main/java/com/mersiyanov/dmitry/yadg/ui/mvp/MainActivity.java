@@ -30,7 +30,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements PicturesContract.View {
 
     @Inject PicturesContract.Presenter presenter;
-    static public List<Item> itemList;
+    private List<Item> itemList;
     private RecyclerView rv_pics;
     private PicturesAdapter picturesAdapter;
     private ProgressBar progressBar;
