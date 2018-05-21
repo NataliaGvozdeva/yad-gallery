@@ -16,7 +16,6 @@ public class MainPresenter implements PicturesContract.Presenter {
 
     public MainPresenter(PicturesContract.Repo repo) {
         this.repo = repo;
-//        this.context = context;
     }
 
     @Override

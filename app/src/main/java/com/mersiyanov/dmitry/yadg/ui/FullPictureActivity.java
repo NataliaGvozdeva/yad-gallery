@@ -39,7 +39,7 @@ public class FullPictureActivity extends AppCompatActivity {
 
         int position = getIntent().getIntExtra("pic_position", 0);
         initViewPager(position);
-        initActionBar(position);
+        initActionBar();
 
     }
 
@@ -64,16 +64,12 @@ public class FullPictureActivity extends AppCompatActivity {
     }
 
     @SuppressLint("RestrictedApi")
-    private void initActionBar(int position) {
+    private void initActionBar() {
 
         actionBarToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(actionBarToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-
-        Formatter f = new Formatter();
-        f.format("%d из %d", position + 1,  itemRealmList.size());
-        getSupportActionBar().setTitle(f.toString());
 
         actionBarToolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
@@ -94,7 +90,7 @@ public class FullPictureActivity extends AppCompatActivity {
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        public ViewPagerAdapter(FragmentManager fm) {
+        ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

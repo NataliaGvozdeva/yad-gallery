@@ -30,7 +30,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements PicturesContract.View {
 
     @Inject PicturesContract.Presenter presenter;
-    static public List<Item> itemList;
+    private List<Item> itemList;
     private RecyclerView rv_pics;
     private PicturesAdapter picturesAdapter;
     private ProgressBar progressBar;
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
         @Override
         public void onPictureClick(Item image) {
             int itemIndex = itemList.indexOf(image);
-            if(itemIndex == 0) { itemIndex = itemIndex + 1; }
 
             Intent intent = new Intent(MainActivity.this, FullPictureActivity.class);
             intent.putExtra("pic_position", itemIndex);
