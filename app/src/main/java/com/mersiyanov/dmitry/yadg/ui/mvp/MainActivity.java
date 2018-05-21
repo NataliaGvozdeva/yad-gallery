@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements PicturesContract.
             new AlertDialog.Builder(this)
                     .setTitle(R.string.action_about)
                     .setMessage(R.string.about_text)
-                    .setIcon(R.mipmap.gallery_icon)
+                    .setIcon(R.mipmap.app_icon)
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                         dialog.dismiss();
                     })
