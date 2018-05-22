@@ -1,11 +1,11 @@
-package com.mersiyanov.dmitry.yadg;
+package com.mersiyanov.dmitry.yadgallery;
 
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.mersiyanov.dmitry.yadg.di.AppComponent;
-import com.mersiyanov.dmitry.yadg.di.DaggerAppComponent;
+import com.mersiyanov.dmitry.yadgallery.di.AppComponent;
+import com.mersiyanov.dmitry.yadgallery.di.DaggerAppComponent;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.squareup.picasso.OkHttp3Downloader;

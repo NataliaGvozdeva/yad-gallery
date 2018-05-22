@@ -1,9 +1,9 @@
-package com.mersiyanov.dmitry.yadg.di;
+package com.mersiyanov.dmitry.yadgallery.di;
 
-import com.mersiyanov.dmitry.yadg.network.RetroHelper;
-import com.mersiyanov.dmitry.yadg.ui.mvp.MainPresenter;
-import com.mersiyanov.dmitry.yadg.ui.mvp.MainRepo;
-import com.mersiyanov.dmitry.yadg.ui.mvp.PicturesContract;
+import com.mersiyanov.dmitry.yadgallery.network.RetroHelper;
+import com.mersiyanov.dmitry.yadgallery.ui.mvp.MainPresenter;
+import com.mersiyanov.dmitry.yadgallery.ui.mvp.MainRepo;
+import com.mersiyanov.dmitry.yadgallery.ui.mvp.PicturesContract;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.ui;
+package com.mersiyanov.dmitry.yadgallery.ui;
 
 import android.annotation.SuppressLint;
 import android.graphics.PorterDuff;
@@ -10,8 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.pojo.Item;
+import com.mersiyanov.dmitry.yadgallery.R;
+import com.mersiyanov.dmitry.yadgallery.pojo.Item;
 
 import java.util.Formatter;
 

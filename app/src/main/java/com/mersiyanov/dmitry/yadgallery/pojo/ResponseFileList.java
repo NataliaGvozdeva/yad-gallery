@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.pojo;
+package com.mersiyanov.dmitry.yadgallery.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

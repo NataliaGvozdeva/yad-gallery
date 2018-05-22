@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.network;
+package com.mersiyanov.dmitry.yadgallery.network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.network;
+package com.mersiyanov.dmitry.yadgallery.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

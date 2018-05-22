@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.ui;
+package com.mersiyanov.dmitry.yadgallery.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.pojo.Item;
+import com.mersiyanov.dmitry.yadgallery.R;
+import com.mersiyanov.dmitry.yadgallery.pojo.Item;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;

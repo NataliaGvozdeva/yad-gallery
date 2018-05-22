@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.ui.mvp;
+package com.mersiyanov.dmitry.yadgallery.ui.mvp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +16,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.YadApplication;
-import com.mersiyanov.dmitry.yadg.pojo.Item;
-import com.mersiyanov.dmitry.yadg.ui.AuthActivity;
-import com.mersiyanov.dmitry.yadg.ui.FullPictureActivity;
-import com.mersiyanov.dmitry.yadg.ui.PicturesAdapter;
+import com.mersiyanov.dmitry.yadgallery.R;
+import com.mersiyanov.dmitry.yadgallery.YadApplication;
+import com.mersiyanov.dmitry.yadgallery.pojo.Item;
+import com.mersiyanov.dmitry.yadgallery.ui.AuthActivity;
+import com.mersiyanov.dmitry.yadgallery.ui.FullPictureActivity;
+import com.mersiyanov.dmitry.yadgallery.ui.PicturesAdapter;
 
 import java.util.List;
 

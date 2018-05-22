@@ -4,7 +4,7 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.mersiyanov.dmitry.yadg"
+        applicationId "com.mersiyanov.dmitry.yadgallery"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1

@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.ui;
+package com.mersiyanov.dmitry.yadgallery.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.YadApplication;
-import com.mersiyanov.dmitry.yadg.ui.mvp.MainActivity;
+import com.mersiyanov.dmitry.yadgallery.R;
+import com.mersiyanov.dmitry.yadgallery.YadApplication;
+import com.mersiyanov.dmitry.yadgallery.ui.mvp.MainActivity;
 import com.yandex.authsdk.YandexAuthException;
 import com.yandex.authsdk.YandexAuthOptions;
 import com.yandex.authsdk.YandexAuthSdk;

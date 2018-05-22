@@ -1,6 +1,6 @@
-package com.mersiyanov.dmitry.yadg.di;
+package com.mersiyanov.dmitry.yadgallery.di;
 
-import com.mersiyanov.dmitry.yadg.ui.mvp.MainActivity;
+import com.mersiyanov.dmitry.yadgallery.ui.mvp.MainActivity;
 
 import javax.inject.Singleton;
 

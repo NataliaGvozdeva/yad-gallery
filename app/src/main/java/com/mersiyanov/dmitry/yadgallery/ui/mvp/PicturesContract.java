@@ -1,7 +1,7 @@
-package com.mersiyanov.dmitry.yadg.ui.mvp;
+package com.mersiyanov.dmitry.yadgallery.ui.mvp;
 
-import com.mersiyanov.dmitry.yadg.pojo.Item;
-import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+import com.mersiyanov.dmitry.yadgallery.pojo.Item;
+import com.mersiyanov.dmitry.yadgallery.pojo.ResponseFileList;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package com.mersiyanov.dmitry.yadg.ui.mvp;
+package com.mersiyanov.dmitry.yadgallery.ui.mvp;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.mersiyanov.dmitry.yadg.network.NetworkUtils;
-import com.mersiyanov.dmitry.yadg.pojo.ResponseFileList;
+import com.mersiyanov.dmitry.yadgallery.network.NetworkUtils;
+import com.mersiyanov.dmitry.yadgallery.pojo.ResponseFileList;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;

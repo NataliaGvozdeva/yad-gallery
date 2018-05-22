@@ -1,4 +1,4 @@
-package com.mersiyanov.dmitry.yadg.ui;
+package com.mersiyanov.dmitry.yadgallery.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.mersiyanov.dmitry.yadg.R;
-import com.mersiyanov.dmitry.yadg.YadApplication;
-import com.mersiyanov.dmitry.yadg.pojo.Item;
+import com.mersiyanov.dmitry.yadgallery.R;
+import com.mersiyanov.dmitry.yadgallery.YadApplication;
+import com.mersiyanov.dmitry.yadgallery.pojo.Item;
 import com.squareup.leakcanary.RefWatcher;
 import com.squareup.picasso.Picasso;
 
